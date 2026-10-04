@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Social Meta Tags -->
+  <title>CERTIFIEDRAO | Vrashabh V Rao</title>
+  <meta name="description" content="CERTIFIEDRAO is the personal engineering platform of Vrashabh V Rao, a VLSI Engineering student at NMAMIT. Explore projects, digital logic, and semiconductor technology." />
+  <meta name="keywords" content="Vrashabh V Rao, certifiedrao.online, CERTIFIEDRAO, VLSI Engineering student, NMAMIT, digital logic, semiconductor technology, electronics portfolio" />
+  <meta name="author" content="Vrashabh V Rao" />
+  <meta name="robots" content="index, follow" />
+  
+  <meta property="og:title" content="CERTIFIEDRAO | Vrashabh V Rao" />
+  <meta property="og:description" content="Personal engineering platform of Vrashabh V Rao. Exploring VLSI design, semiconductor technology, and innovative digital solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://certifiedrao.online/" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    :root { --bg: #050505; --surface: #111111; --border: #222222; --text-main: #ffffff; --text-muted: #888888; --accent: #333333; --font: 'Inter', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--text-main); font-family: var(--font); line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    
+    /* Navbar & Mobile Menu */
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); position: relative; z-index: 100; background: var(--bg); }
+    .brand { font-weight: 600; font-size: 1.1rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text-main); }
+    .btn-outline { border: 1px solid var(--border); padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 500; display: inline-block; }
+    .btn-outline:hover { background: var(--text-main); color: var(--bg); }
+    .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+    
+    /* Hero Section */
+    .hero { flex: 1; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 2rem 4rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+    .hero-left { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; animation: fadeUp 1s ease-out; }
+    .tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .tag { border: 1px solid var(--border); padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.75rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.02); }
+    .name-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; line-height: 1.1; letter-spacing: -2px; }
+    .name-title .last-name { color: var(--text-muted); display: block; }
+    .roles { color: var(--text-muted); font-size: 0.95rem; word-spacing: 2px; }
+    .roles span { color: var(--accent); margin: 0 0.5rem; }
+    .description { color: var(--text-muted); max-width: 450px; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .cta-group { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .btn-primary:hover { background: var(--text-main); color: var(--bg); }
+    
+    /* Social Cards */
+    .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; width: 100%; max-width: 450px; }
+    .social-card { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem; transition: transform 0.2s, border-color 0.2s; cursor: pointer; }
+    .social-card:hover { transform: translateY(-2px); border-color: #444; }
+    .social-icon { width: 40px; height: 40px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .social-info p { font-size: 0.85rem; font-weight: 500; margin: 0; }
+    .social-info span { font-size: 0.75rem; color: var(--text-muted); }
+    
+    /* 3D Animation */
+    .hero-right { display: flex; justify-content: center; align-items: center; height: 100%; perspective: 1000px; }
+    .cube-container { width: 250px; height: 250px; position: relative; transform-style: preserve-3d; animation: floatRotate 15s infinite linear; }
+    .face { position: absolute; width: 100%; height: 100%; border: 1px solid #333; background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(4px); box-shadow: inset 0 0 40px rgba(0,0,0,0.8); }
+    .front  { transform: translateZ(125px); } .back   { transform: rotateY(180deg) translateZ(125px); }
+    .right  { transform: rotateY(90deg) translateZ(125px); } .left   { transform: rotateY(-90deg) translateZ(125px); }
+    .top    { transform: rotateX(90deg) translateZ(125px); } .bottom { transform: rotateX(-90deg) translateZ(125px); }
+    
+    @keyframes floatRotate { 0% { transform: rotateX(0deg) rotateY(0deg) translateY(0); } 50% { transform: rotateX(180deg) rotateY(180deg) translateY(-20px); } 100% { transform: rotateX(360deg) rotateY(360deg) translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 968px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 2rem; }
+      .hero-left { align-items: center; }
+      .description, .roles { text-align: center; }
+      .cta-group { justify-content: center; width: 100%; }
+      .social-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .hero-right { display: none; }
+      .navbar { padding: 1.5rem 2rem; }
+    }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--surface); padding: 1.5rem; border-bottom: 1px solid var(--border); text-align: center; }
+      .nav-links.active { display: flex; }
+      .nav-links .btn-outline { margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+      <div class="brand"><a href="index.html">CERTIFIEDRAO</a></div>
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero-left">
+      <div class="tags">
+        <span class="tag">VLSI Student</span>
+        <span class="tag">Finite Loop Club Member</span>
+        <span class="tag">NMAMIT</span>
+      </div>
+
+      <h1 class="name-title">
+        Vrashabh <span class="last-name">V Rao</span>
+      </h1>
+
+      <p class="roles">
+        Digital Logic <span>•</span> Cloud Computing <span>•</span> Developer
+      </p>
+
+      <p class="description">
+        Crafting scalable, efficient digital solutions and exploring semiconductor fundamentals. Currently building my foundation in VLSI and documenting the journey.
+      </p>
+
+      <div class="cta-group">
+        <a href="projects.html" class="btn-primary">View Projects <span>→</span></a>
+        <a href="about.html" class="btn-primary" style="border-style: dashed;">Read Logs <span>↗</span></a>
+      </div>
+
+      <div class="social-grid">
+        <a href="https://github.com/vrashabhvrao" target="_blank" class="social-card" aria-label="GitHub Profile">
+          <div class="social-icon">
+            <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </div>
+          <div class="social-info">
+            <p>GitHub</p>
+            <span>Code & Builds</span>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/vrashabh-v-rao-27346241a/?isSelfProfile=true" target="_blank" class="social-card" aria-label="LinkedIn Profile">
+          <div class="social-icon">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </div>
+          <div class="social-info">
+            <p>LinkedIn</p>
+            <span>Network</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="hero-right" aria-hidden="true">
+      <div class="cube-container">
+        <div class="face front"></div><div class="face back"></div>
+        <div class="face right"></div><div class="face left"></div>
+        <div class="face top"></div><div class="face bottom"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    const supabaseUrl = 'https://vojmavccdcbnkdfveqyx.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvam1hdmNjZGNibmtkZnZlcXl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwOTE3ODMsImV4cCI6MjEwNjY2Nzc4M30.pcXqcsqBlc4vKKeCJl2dsbvGQWlMjVpvnSNpGbPJpTo'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    async function logVisit() {
+      const { data } = await supabase.from('analytics').select('views').eq('id', 1).single();
+      if (data) {
+        await supabase.from('analytics').update({ views: data.views + 1 }).eq('id', 1);
+      }
+    }
+    
+    // Log visit if not on localhost
+    if(window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      logVisit();
+    }
+  </script>
+</body>
+</html>

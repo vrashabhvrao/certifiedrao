@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Projects | CERTIFIEDRAO | Vrashabh V Rao</title>
+  <meta name="description" content="Explore the engineering projects of Vrashabh V Rao. View works on Digital Logic Systems, Siemens CAD Models, and VLSI foundational builds." />
+  <meta name="keywords" content="Vrashabh V Rao projects, VLSI projects, digital logic, certifiedrao.online, CERTIFIEDRAO projects, Siemens 2D CAD, engineering portfolio, Verilog" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root { 
+      --bg: #050505; --surface: #111111; --border: #222222; 
+      --text-main: #ffffff; --text-muted: #888888; --font: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--text-main); font-family: var(--font); line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); position: relative; z-index: 100; background: var(--bg); }
+    .brand { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
+    .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+
+    .projects-container { flex: 1; max-width: 1300px; margin: 0 auto; padding: 5rem 2rem; width: 100%; }
+    .header-section { margin-bottom: 4rem; text-align: center; }
+    .header-section h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -1px; }
+    .header-section p { color: var(--text-muted); margin-top: 0.75rem; font-size: 1.1rem; }
+
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; animation: fadeUp 0.6s ease-out backwards; }
+    .project-card:hover { transform: translateY(-8px); border-color: #555555; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .project-tag { align-self: flex-start; font-size: 0.8rem; font-weight: 600; padding: 0.35rem 1rem; border: 1px solid var(--border); border-radius: 50px; color: var(--text-muted); background: rgba(255,255,255,0.02); }
+    .project-card h2 { font-size: 1.4rem; font-weight: 600; line-height: 1.3; }
+    .project-card p { color: #aaaaaa; font-size: 0.95rem; flex-grow: 1; line-height: 1.6; }
+    .project-link { margin-top: 1.5rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); display: inline-flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid transparent; padding-bottom: 0.2rem; align-self: flex-start; }
+    .project-link:hover { border-bottom-color: var(--text-main); }
+    
+    .error-state { color: #ef4444; text-align: center; width: 100%; padding: 3rem; font-size: 1.1rem; grid-column: 1 / -1; }
+    
+    .skeleton-box { background: linear-gradient(110deg, #181818 8%, #282828 18%, #181818 33%); border-radius: 6px; background-size: 200% 100%; animation: 1.5s shine linear infinite; }
+    @keyframes shine { to { background-position-x: -200%; } }
+    .skeleton-tag { width: 90px; height: 26px; border-radius: 50px; }
+    .skeleton-title { width: 75%; height: 28px; margin-top: 0.5rem; }
+    .skeleton-text { width: 100%; height: 16px; margin-top: 0.5rem; }
+    .skeleton-text.short { width: 60%; }
+    .skeleton-link { width: 140px; height: 20px; margin-top: 1.5rem; }
+    
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    
+    @media (max-width: 768px) { 
+      .navbar { padding: 1.5rem 2rem; } .menu-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--surface); padding: 2rem; border-bottom: 1px solid var(--border); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+      .nav-links.active { display: flex; } .project-card { padding: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="brand"><a href="index.html">CERTIFIEDRAO</a></div>
+      <button class="menu-toggle" id="mobile-menu-btn"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button>
+      <div class="nav-links" id="nav-links">
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="projects-container">
+    <div class="header-section">
+      <h1>Selected Works</h1>
+      <p>Building, simulating, and documenting the engineering process.</p>
+    </div>
+
+    <div class="project-grid" id="project-grid">
+      <div class="project-card"><div class="skeleton-box skeleton-tag"></div><div class="skeleton-box skeleton-title"></div><div style="flex-grow: 1; margin-top: 1rem;"><div class="skeleton-box skeleton-text"></div><div class="skeleton-box skeleton-text"></div><div class="skeleton-box skeleton-text short"></div></div><div class="skeleton-box skeleton-link"></div></div>
+      <div class="project-card"><div class="skeleton-box skeleton-tag"></div><div class="skeleton-box skeleton-title"></div><div style="flex-grow: 1; margin-top: 1rem;"><div class="skeleton-box skeleton-text"></div><div class="skeleton-box skeleton-text"></div><div class="skeleton-box skeleton-text short"></div></div><div class="skeleton-box skeleton-link"></div></div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('active'); });
+  </script>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    const supabaseUrl = 'https://vojmavccdcbnkdfveqyx.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvam1hdmNjZGNibmtkZnZlcXl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwOTE3ODMsImV4cCI6MjEwNjY2Nzc4M30.pcXqcsqBlc4vKKeCJl2dsbvGQWlMjVpvnSNpGbPJpTo'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    async function loadProjects() {
+      const grid = document.getElementById('project-grid');
+      
+      try {
+        const { data: projects, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+
+        if (error || !projects || projects.length === 0) { 
+          grid.innerHTML = `<div class="error-state" style="color: var(--text-muted);">No projects found or connection error. Add some from the Admin Panel to see them here!</div>`; 
+          return; 
+        }
+
+        setTimeout(() => {
+          grid.innerHTML = '';
+          projects.forEach((proj, index) => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            // This is the line that fixes your issue. It uses proj.link_url directly.
+            card.innerHTML = `
+              <span class="project-tag">${proj.tag}</span>
+              <h2>${proj.title}</h2>
+              <p>${proj.description}</p>
+              <a href="${proj.link_url}" class="project-link">View Documentation &rarr;</a>
+            `;
+            grid.appendChild(card);
+          });
+        }, 500);
+
+      } catch (err) {
+        grid.innerHTML = `<div class="error-state">Critical system error while fetching data.</div>`;
+      }
+    }
+    
+    loadProjects();
+  </script>
+</body>
+</html>

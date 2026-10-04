@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vrashabh V Rao | VLSI, Digital Design Tools & Electronics Portfolio</title>
+  <meta name="description" content="Vrashabh V Rao's VLSI and digital electronics portfolio with interactive logic gate simulator, radix converter, resistor calculator, truth table generator, and Verilog helper tools." />
+  <meta name="keywords" content="Vrashabh V Rao, VLSI portfolio, digital design, boolean logic, truth table generator, Verilog, electronics student, NMAMIT, resistor color code, radix converter" />
+  <title>Vrashabh V Rao | VLSI Portfolio, Verilog Tools & Digital Electronics</title>
+  <meta name="description" content="Vrashabh V Rao's VLSI and digital electronics portfolio featuring Verilog learning tools, boolean truth table generator, logic gate simulator, 8-bit radix converter, and resistor color code calculator." />
+  <meta name="keywords" content="Vrashabh V Rao, VLSI portfolio, Verilog tools, digital electronics portfolio, boolean truth table generator, logic gate simulator, NMAMIT VLSI student, resistor color code calculator, radix converter, 2's complement calculator" />
+  <meta name="author" content="Vrashabh V Rao" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+  <meta name="subject" content="VLSI design, Verilog, digital electronics, and student engineering tools" />
+  <meta name="rating" content="general" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://vrashabhvrao.netlify.app/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vrashabh V Rao | VLSI & Digital Design Portfolio" />
+  <meta property="og:description" content="Explore VLSI learning projects and useful digital design tools, including a truth table and Verilog helper." />
+  <meta property="og:url" content="https://vrashabhvrao.netlify.app/" />
+  <meta property="og:site_name" content="VLSI Workstation" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vrashabh V Rao | VLSI & Digital Design Portfolio" />
+  <meta name="twitter:description" content="Interactive electronics utilities and VLSI learning portfolio by Vrashabh V Rao." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f7faf9;
+      color: #10201e;
+    }
+
+    .mono { font-family: 'Fira Code', monospace; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+
+    .btn-pressed {
+      background-color: #0f766e !important;
+      color: white !important;
+      border-color: #0d5f59 !important;
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.22);
+      transform: translateY(2px);
+    }
+
+    .btn-unpressed {
+      background-color: #f1f5f9;
+      color: #64748b;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .btn-unpressed:hover {
+      background-color: #e2e8f0;
+      color: #334155;
+    }
+
+    .chip-grid {
+      background-image:
+        linear-gradient(rgba(15, 118, 110, 0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 118, 110, 0.10) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .truth-table td,
+    .truth-table th {
+      white-space: nowrap;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vrashabh V Rao",
+    "url": "https://vrashabhvrao.netlify.app/",
+    "email": "mailto:vrashabhvrao@gmail.com",
+    "sameAs": [
+      "https://github.com/vrashabhvrao",
+      "https://instagram.com/vvrrssbb._"
+    ],
+    "knowsAbout": ["VLSI design", "Digital electronics", "Boolean logic", "Verilog", "Semiconductors"],
+    "jobTitle": "VLSI Design and Technology Student",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "NMAMIT"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VLSI Workstation",
+    "applicationCategory": "EducationalApplication",
+    "applicationSubCategory": "Digital Electronics",
+    "operatingSystem": "Any",
+    "url": "https://vrashabhvrao.netlify.app/",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "featureList": [
+      "Boolean truth table generator",
+      "Verilog assign helper",
+      "Logic gate simulator",
+      "8-bit radix and 2's complement converter",
+      "Resistor color code calculator"
+    ],
+    "description": "Interactive VLSI and digital electronics tools including boolean truth table, Verilog helper, logic gate simulator, radix converter, and resistor color code calculator.",
+    "author": {
+      "@type": "Person",
+      "name": "Vrashabh V Rao"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://vrashabhvrao.netlify.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Boolean Truth Table and Verilog Helper",
+        "item": "https://vrashabhvrao.netlify.app/#logic-lab"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Engineering Utilities",
+        "item": "https://vrashabhvrao.netlify.app/#tools"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is this VLSI portfolio about?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This portfolio documents Vrashabh V Rao's learning in VLSI design, digital electronics, boolean logic, Verilog, number systems, and electronics lab basics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I generate truth tables for boolean expressions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The Boolean Truth Table and Verilog Helper accepts expressions using A, B, C, D, AND, OR, XOR, NOT, and parentheses, then generates the full truth table and minterms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the site help with Verilog learning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The Logic Lab converts a boolean expression into a simple Verilog assign statement that students can copy and adapt while practicing digital design."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-950">
+  <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-3 group" aria-label="Vrashabh V Rao VLSI portfolio home">
+        <span class="w-10 h-10 rounded-lg bg-teal-700 text-white flex items-center justify-center text-xl group-hover:bg-teal-800 transition-colors">
+          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+        </span>
+        <span>
+          <span class="block font-bold text-lg text-slate-950 leading-tight">VLSI.Workstation</span>
+          <span class="block text-xs text-slate-500 font-medium">Vrashabh V Rao</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex gap-7 text-sm font-medium text-slate-600" aria-label="Main navigation">
+        <a href="#about" class="hover:text-teal-700 transition-colors">About</a>
+        <a href="#tools" class="hover:text-teal-700 transition-colors">Tools</a>
+        <a href="#logic-lab" class="hover:text-teal-700 transition-colors">Logic Lab</a>
+        <a href="#faq" class="hover:text-teal-700 transition-colors">FAQ</a>
+        <a href="#contact" class="hover:text-teal-700 transition-colors">Contact</a>
+      </nav>
+      <a href="https://github.com/vrashabhvrao" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-slate-700 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg transition-all font-medium text-sm">
+        <i class="fa-brands fa-github text-lg" aria-hidden="true"></i>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="chip-grid">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 py-16 md:py-20 md:flex items-center justify-between gap-12 animate-fade-in">
+        <div class="max-w-2xl text-center md:text-left">
+          <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white text-teal-800 border border-teal-200 mb-6 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-teal-700 animate-pulse"></span>
+            1st Year VLSI & Digital Electronics Student
+          </p>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-normal text-slate-950 mb-6 leading-tight">
+            VLSI portfolio, digital design tools, and silicon learning notes.
+          </h1>
+          <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+            I am Vrashabh V Rao, a VLSI Design and Technology student at NMAMIT. This site documents my electronics journey and gives students quick tools for boolean logic, number systems, Verilog snippets, and lab components.
+          </p>
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+            <a href="#logic-lab" class="px-5 py-3 bg-teal-700 text-white font-semibold rounded-lg hover:bg-teal-800 hover:shadow-lg transition-all duration-200">
+              Try Logic Lab <i class="fa-solid fa-bolt ml-2" aria-hidden="true"></i>
+            </a>
+            <a href="#tools" class="px-5 py-3 bg-white text-slate-800 border border-slate-200 font-semibold rounded-lg hover:border-teal-300 hover:text-teal-800 transition-all duration-200">
+              Explore Tools
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-12 md:mt-0 bg-white border border-slate-200 rounded-xl w-full md:w-[28rem] shadow-xl overflow-hidden animate-fade-in delay-100">
+          <div class="bg-slate-100 border-b border-slate-200 px-4 py-3 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <span class="ml-2 text-xs mono text-slate-500 font-medium">full_adder.v</span>
+          </div>
+          <div class="p-5 mono text-sm text-slate-800 bg-white leading-relaxed">
+            <p><span class="text-teal-700 font-semibold">module</span> full_adder(</p>
+            <p class="pl-4">input a, b, cin,</p>
+            <p class="pl-4">output sum, cout</p>
+            <p>);</p>
+            <p class="pl-4 mt-2"><span class="text-cyan-700 font-semibold">assign</span> sum = a ^ b ^ cin;</p>
+            <p class="pl-4"><span class="text-cyan-700 font-semibold">assign</span> cout = (a & b) | (b & cin) | (a & cin);</p>
+            <p class="mt-2"><span class="text-teal-700 font-semibold">endmodule</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="max-w-7xl mx-auto px-5 sm:px-6 py-14 scroll-mt-20">
+      <div class="mb-8 text-center md:text-left animate-fade-in">
+        <h2 class="text-3xl font-bold text-slate-950 mb-3">About Vrashabh V Rao</h2>
+        <p class="text-slate-600">VLSI learner, electronics builder, and digital logic enthusiast.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 animate-fade-in delay-100 flex flex-col md:flex-row gap-8 items-center">
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-teal-100 to-cyan-200 border-4 border-white shadow-lg flex items-center justify-center flex-shrink-0">
+          <span class="text-5xl font-bold text-teal-800/70">VR</span>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <h3 class="text-2xl font-bold text-slate-950 mb-2">Vrashabh V Rao</h3>
+          <p class="text-slate-600 mb-5 leading-relaxed max-w-3xl">
+            I am a first-year engineering student specializing in <strong class="text-slate-950 font-semibold">VLSI Design and Technology</strong> at <strong class="text-slate-950 font-semibold">NMAMIT</strong>. I am building fundamentals in semiconductor technology, digital logic design, Verilog, and hardware architecture.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-3 text-left max-w-3xl">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <p class="text-xs uppercase font-bold text-slate-500 mb-1">Focus</p>
+              <p class="font-semibold text-slate-900">VLSI and Digital Design</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <p class="text-xs uppercase font-bold text-slate-500 mb-1">Learning</p>
+              <p class="font-semibold text-slate-900">Verilog, Logic, Circuits</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <p class="text-xs uppercase font-bold text-slate-500 mb-1">Goal</p>
+              <p class="font-semibold text-slate-900">Useful silicon projects</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="logic-lab" class="bg-slate-950 text-white py-14 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="mb-8 animate-fade-in">
+          <p class="text-teal-300 font-semibold text-sm mb-2">Unique Student Tool</p>
+          <h2 class="text-3xl font-bold mb-3">Boolean Truth Table and Verilog Helper</h2>
+          <p class="text-slate-300 max-w-3xl">Type a boolean expression with variables A, B, C, and D. The tool generates a truth table, canonical minterms, and a Verilog assignment you can use while learning digital design.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-6">
+          <div class="bg-white text-slate-950 rounded-2xl p-6 shadow-xl animate-fade-in delay-100">
+            <label for="exprInput" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Boolean expression</label>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input id="exprInput" type="text" value="A&B | ~C" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 mono text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" aria-describedby="exprHelp" />
+              <button onclick="runTruthTable()" class="px-5 py-3 bg-teal-700 text-white rounded-lg font-semibold hover:bg-teal-800 transition-colors">Generate</button>
+            </div>
+            <p id="exprHelp" class="text-sm text-slate-500 mt-3">Use `&` for AND, `|` for OR, `^` for XOR, `~` or `!` for NOT, and parentheses for grouping.</p>
+
+            <div class="grid sm:grid-cols-2 gap-3 mt-5">
+              <button onclick="setExample('A&B | ~C')" class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg p-3 transition-colors">
+                <span class="block text-xs font-bold text-slate-500 uppercase">Example</span>
+                <span class="mono text-sm">A&B | ~C</span>
+              </button>
+              <button onclick="setExample('(A^B)&C | D')" class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg p-3 transition-colors">
+                <span class="block text-xs font-bold text-slate-500 uppercase">Example</span>
+                <span class="mono text-sm">(A^B)&C | D</span>
+              </button>
+            </div>
+
+            <div class="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <div class="flex items-center justify-between gap-3 mb-2">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Verilog assign</p>
+                <button onclick="copyVerilog()" class="text-xs font-bold text-teal-700 hover:text-teal-900">Copy</button>
+              </div>
+              <code id="verilogOut" class="mono text-sm text-slate-900 break-words">assign y = (A & B) | ~C;</code>
+            </div>
+            <div id="logicStatus" class="mt-4 text-sm font-medium text-slate-600"></div>
+          </div>
+
+          <div class="bg-white text-slate-950 rounded-2xl p-6 shadow-xl animate-fade-in delay-200">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+              <div>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Generated result</p>
+                <h3 id="mintermOut" class="text-xl font-bold text-slate-950 mt-1">Σm(0, 1, 6, 7)</h3>
+              </div>
+              <p id="variableOut" class="mono text-sm bg-slate-100 px-3 py-2 rounded-lg border border-slate-200">A B C</p>
+            </div>
+            <div class="overflow-auto border border-slate-200 rounded-xl max-h-80">
+              <table class="truth-table w-full text-sm text-left">
+                <thead id="truthHead" class="bg-slate-100 sticky top-0"></thead>
+                <tbody id="truthBody" class="divide-y divide-slate-100"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="max-w-7xl mx-auto px-5 sm:px-6 py-14 scroll-mt-20">
+      <div class="mb-8 text-center md:text-left animate-fade-in">
+        <h2 class="text-3xl font-bold text-slate-950 mb-3">Engineering Utilities</h2>
+        <p class="text-slate-600">Fast interactive calculators for foundational electronics and computer architecture.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group animate-fade-in delay-100">
+          <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700 mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-950 mb-1">Logic Gate Simulator</h3>
+          <p class="text-sm text-slate-500 mb-6">Test standard two-input combinational gates.</p>
+
+          <div class="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4">
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">A</span>
+              <button id="inputA" onclick="toggleInput('inputA')" class="w-12 h-12 rounded-lg btn-unpressed font-bold text-lg mono">0</button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Gate</span>
+              <select id="gateSelect" onchange="calculateLogic()" class="bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+                <option value="AND">AND</option>
+                <option value="OR">OR</option>
+                <option value="NAND">NAND</option>
+                <option value="NOR">NOR</option>
+                <option value="XOR">XOR</option>
+                <option value="XNOR">XNOR</option>
+              </select>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">B</span>
+              <button id="inputB" onclick="toggleInput('inputB')" class="w-12 h-12 rounded-lg btn-unpressed font-bold text-lg mono">0</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-1">
+            <div class="text-sm font-medium text-slate-600">Output <span class="mono ml-1 px-2 py-1 bg-slate-100 rounded border border-slate-200" id="logicExpr">Y = A · B</span></div>
+            <div id="outputY" class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-lg mono transition-colors shadow-inner">0</div>
+          </div>
+        </article>
+
+        <article class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group animate-fade-in delay-200">
+          <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-700 mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-950 mb-1">Radix and 2's Complement</h3>
+          <p class="text-sm text-slate-500 mb-6">Convert signed integers for 8-bit architecture.</p>
+
+          <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2" for="decInput">Decimal Input</label>
+          <input type="number" id="decInput" value="42" min="-128" max="127" oninput="convertNumber()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-2 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-cyan-600 transition-all shadow-sm" />
+
+          <div class="space-y-3 mt-4">
+            <div class="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-3">
+              <span class="text-xs font-medium text-slate-500">8-Bit Binary</span>
+              <span id="binVal" class="mono text-cyan-700 font-bold">00101010</span>
+            </div>
+            <div class="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-3">
+              <span class="text-xs font-medium text-slate-500">Hexadecimal</span>
+              <span id="hexVal" class="mono text-emerald-700 font-bold">0x2A</span>
+            </div>
+            <div class="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 gap-3">
+              <span class="text-xs font-medium text-slate-500">Opposite in 2's Comp</span>
+              <span id="twosCompVal" class="mono text-teal-700 font-bold">11010110</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group animate-fade-in delay-300 md:col-span-2 lg:col-span-1">
+          <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-700 mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-wave-square" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-950 mb-1">Resistor Color Code</h3>
+          <p class="text-sm text-slate-500 mb-6">Calculate resistance for common 4-band lab resistors.</p>
+
+          <div class="flex gap-2 mb-6 h-12 rounded-full overflow-hidden border border-slate-300 shadow-sm relative">
+            <div class="absolute left-0 top-1/2 w-4 h-1 bg-slate-400 -translate-y-1/2"></div>
+            <div class="absolute right-0 top-1/2 w-4 h-1 bg-slate-400 -translate-y-1/2"></div>
+            <div class="flex-1 bg-[#d4a373] mx-4 flex rounded-lg overflow-hidden border-y-4 border-[#bc8a5f]">
+              <div id="band1Color" class="flex-1 bg-[#8B4513] mx-1"></div>
+              <div id="band2Color" class="flex-1 bg-red-600 mx-1"></div>
+              <div id="band3Color" class="flex-1 bg-orange-500 mx-1"></div>
+              <div class="flex-1 bg-transparent mx-1"></div>
+              <div id="band4Color" class="flex-1 bg-yellow-400 mx-1"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <select id="band1" onchange="calcResistor()" class="bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-2 focus:ring-2 focus:ring-emerald-600">
+              <option value="0">Black (0)</option>
+              <option value="1" selected>Brown (1)</option>
+              <option value="2">Red (2)</option>
+              <option value="3">Orange (3)</option>
+              <option value="4">Yellow (4)</option>
+              <option value="5">Green (5)</option>
+              <option value="6">Blue (6)</option>
+              <option value="7">Violet (7)</option>
+              <option value="8">Gray (8)</option>
+              <option value="9">White (9)</option>
+            </select>
+            <select id="band2" onchange="calcResistor()" class="bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-2 focus:ring-2 focus:ring-emerald-600">
+              <option value="0">Black (0)</option>
+              <option value="1">Brown (1)</option>
+              <option value="2" selected>Red (2)</option>
+              <option value="3">Orange (3)</option>
+              <option value="4">Yellow (4)</option>
+              <option value="5">Green (5)</option>
+              <option value="6">Blue (6)</option>
+              <option value="7">Violet (7)</option>
+              <option value="8">Gray (8)</option>
+              <option value="9">White (9)</option>
+            </select>
+            <select id="band3" onchange="calcResistor()" class="bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-2 focus:ring-2 focus:ring-emerald-600">
+              <option value="1">Black (x1)</option>
+              <option value="10">Brown (x10)</option>
+              <option value="100">Red (x100)</option>
+              <option value="1000" selected>Orange (x1k)</option>
+              <option value="10000">Yellow (x10k)</option>
+              <option value="100000">Green (x100k)</option>
+              <option value="1000000">Blue (x1M)</option>
+            </select>
+            <select id="band4" onchange="calcResistor()" class="bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-2 focus:ring-2 focus:ring-emerald-600">
+              <option value="5" selected>Gold (+/-5%)</option>
+              <option value="10">Silver (+/-10%)</option>
+            </select>
+          </div>
+
+          <div class="text-center bg-slate-50 py-3 rounded-lg border border-slate-200">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Resistance</span>
+            <span id="resistorOutput" class="text-xl font-bold text-slate-950">12 kΩ +/-5%</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="max-w-7xl mx-auto px-5 sm:px-6 pb-14 scroll-mt-20">
+      <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-8 items-start">
+        <div class="animate-fade-in">
+          <p class="text-teal-700 font-semibold text-sm mb-2">Digital Electronics FAQ</p>
+          <h2 class="text-3xl font-bold text-slate-950 mb-3">VLSI and Verilog learning notes</h2>
+          <p class="text-slate-600 leading-relaxed">
+            This section gives search engines and students a clearer map of the topics covered here: VLSI basics, boolean algebra, truth tables, Verilog assignments, 2's complement arithmetic, and electronics lab utilities.
+          </p>
+        </div>
+
+        <div class="space-y-4 animate-fade-in delay-100">
+          <article class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 class="font-bold text-slate-950 mb-2">What is this VLSI portfolio about?</h3>
+            <p class="text-slate-600 leading-relaxed">
+              This portfolio documents Vrashabh V Rao's learning in VLSI design, digital electronics, semiconductor fundamentals, boolean logic, Verilog, number systems, and electronics lab basics.
+            </p>
+          </article>
+          <article class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 class="font-bold text-slate-950 mb-2">Can I generate truth tables for boolean expressions?</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Yes. The Boolean Truth Table and Verilog Helper accepts expressions using A, B, C, D, AND, OR, XOR, NOT, and parentheses, then generates the full truth table and canonical minterms.
+            </p>
+          </article>
+          <article class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 class="font-bold text-slate-950 mb-2">Does the site help with Verilog learning?</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Yes. The Logic Lab converts a boolean expression into a simple Verilog assign statement that students can copy, test, and adapt while practicing combinational digital design.
+            </p>
+          </article>
+          <article class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 class="font-bold text-slate-950 mb-2">Which electronics tools are included?</h3>
+            <p class="text-slate-600 leading-relaxed">
+              The site includes a logic gate simulator, 8-bit radix converter, 2's complement helper, resistor color code calculator, truth table generator, and Verilog assign generator.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-white border-y border-slate-200 py-12">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-950 mb-2">Connect with me</h2>
+          <p class="text-slate-600">Open to learning, collaboration, and student electronics projects.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="mailto:vrashabhvrao@gmail.com" class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 hover:border-teal-300 hover:bg-teal-50 text-slate-700 hover:text-teal-800 px-5 py-2.5 rounded-lg transition-all font-medium text-sm shadow-sm">
+            <i class="fa-solid fa-envelope text-teal-700" aria-hidden="true"></i>
+            <span>vrashabhvrao@gmail.com</span>
+          </a>
+          <a href="https://instagram.com/vvrrssbb._" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 hover:border-pink-300 hover:bg-pink-50 text-slate-700 hover:text-pink-600 px-5 py-2.5 rounded-lg transition-all font-medium text-sm shadow-sm">
+            <i class="fa-brands fa-instagram text-pink-500" aria-hidden="true"></i>
+            <span>@vvrrssbb._</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 text-slate-300 py-9">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 text-center md:flex md:justify-between md:items-center gap-4">
+      <p class="mb-4 md:mb-0 text-sm font-medium">&copy; <span id="year"></span> Vrashabh V Rao. VLSI and Electronics Workspace.</p>
+      <div class="flex gap-4 justify-center">
+        <a href="https://instagram.com/vvrrssbb._" target="_blank" rel="noopener noreferrer" class="hover:text-pink-300 transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i></a>
+        <a href="https://github.com/vrashabhvrao" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub"><i class="fa-brands fa-github text-xl" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    let valA = 0;
+    let valB = 0;
+
+    function toggleInput(id) {
+      const btn = document.getElementById(id);
+      const active = id === 'inputA' ? valA === 0 : valB === 0;
+      if (id === 'inputA') valA = active ? 1 : 0;
+      if (id === 'inputB') valB = active ? 1 : 0;
+      btn.innerText = active ? '1' : '0';
+      btn.classList.toggle('btn-pressed', active);
+      btn.classList.toggle('btn-unpressed', !active);
+      calculateLogic();
+    }
+
+    function calculateLogic() {
+      const gate = document.getElementById('gateSelect').value;
+      const outElem = document.getElementById('outputY');
+      const exprElem = document.getElementById('logicExpr');
+      let result = 0;
+
+      switch(gate) {
+        case 'AND': result = valA & valB; exprElem.innerText = 'Y = A · B'; break;
+        case 'OR': result = valA | valB; exprElem.innerText = 'Y = A + B'; break;
+        case 'NAND': result = !(valA & valB) ? 1 : 0; exprElem.innerText = 'Y = (A · B)\''; break;
+        case 'NOR': result = !(valA | valB) ? 1 : 0; exprElem.innerText = 'Y = (A + B)\''; break;
+        case 'XOR': result = valA ^ valB; exprElem.innerText = 'Y = A XOR B'; break;
+        case 'XNOR': result = !(valA ^ valB) ? 1 : 0; exprElem.innerText = 'Y = A XNOR B'; break;
+      }
+
+      outElem.innerText = result;
+      outElem.classList.toggle('bg-teal-700', result === 1);
+      outElem.classList.toggle('text-white', result === 1);
+      outElem.classList.toggle('bg-slate-200', result === 0);
+      outElem.classList.toggle('text-slate-500', result === 0);
+    }
+
+    function convertNumber() {
+      let num = parseInt(document.getElementById('decInput').value, 10);
+      if (isNaN(num)) return;
+      if (num > 127) { num = 127; document.getElementById('decInput').value = 127; }
+      if (num < -128) { num = -128; document.getElementById('decInput').value = -128; }
+
+      const unsignedVal = num < 0 ? (256 + num) : num;
+      const binStr = unsignedVal.toString(2).padStart(8, '0');
+      const hexStr = '0x' + unsignedVal.toString(16).toUpperCase().padStart(2, '0');
+      const opposite = (-num) < 0 ? (256 - num) : (-num);
+
+      document.getElementById('binVal').innerText = binStr;
+      document.getElementById('hexVal').innerText = hexStr;
+      document.getElementById('twosCompVal').innerText = (opposite % 256).toString(2).padStart(8, '0');
+    }
+
+    const colorMap = {
+      "0": "bg-black", "1": "bg-[#8B4513]", "2": "bg-red-600", "3": "bg-orange-500",
+      "4": "bg-yellow-400", "5": "bg-green-600", "6": "bg-blue-600", "7": "bg-purple-600",
+      "8": "bg-gray-500", "9": "bg-white border border-gray-300"
+    };
+    const multiplierMap = {
+      "1": "bg-black", "10": "bg-[#8B4513]", "100": "bg-red-600", "1000": "bg-orange-500",
+      "10000": "bg-yellow-400", "100000": "bg-green-600", "1000000": "bg-blue-600"
+    };
+
+    function updateBandColor(bandId, val, isMultiplier = false, isTolerance = false) {
+      const el = document.getElementById(bandId);
+      el.className = 'flex-1 mx-1';
+      if (isTolerance) el.classList.add(val === "5" ? "bg-yellow-400" : "bg-gray-300");
+      else if (isMultiplier) el.classList.add(...multiplierMap[val].split(' '));
+      else el.classList.add(...colorMap[val].split(' '));
+    }
+
+    function formatOhms(value) {
+      if (value >= 1000000) return (value / 1000000) + ' MΩ';
+      if (value >= 1000) return (value / 1000) + ' kΩ';
+      return value + ' Ω';
+    }
+
+    function calcResistor() {
+      const b1 = document.getElementById('band1').value;
+      const b2 = document.getElementById('band2').value;
+      const mult = document.getElementById('band3').value;
+      const tol = document.getElementById('band4').value;
+      updateBandColor('band1Color', b1);
+      updateBandColor('band2Color', b2);
+      updateBandColor('band3Color', mult, true);
+      updateBandColor('band4Color', tol, false, true);
+      document.getElementById('resistorOutput').innerText = `${formatOhms(parseInt(b1 + b2, 10) * parseInt(mult, 10))} +/-${tol}%`;
+    }
+
+    function setExample(expr) {
+      document.getElementById('exprInput').value = expr;
+      runTruthTable();
+    }
+
+    function normalizeExpression(expr) {
+      return expr
+        .replace(/\s+/g, '')
+        .replace(/!/g, '~')
+        .replace(/([ABCD01])'/g, '~$1')
+        .toUpperCase();
+    }
+
+    function expressionToJs(expr) {
+      const allowed = /^[ABCD01&|^~()]+$/;
+      if (!allowed.test(expr)) throw new Error('Use only A, B, C, D, 0, 1, &, |, ^, ~, and parentheses.');
+      return expr
+        .replace(/~/g, '!')
+        .replace(/A/g, 'Number(vars.A)')
+        .replace(/B/g, 'Number(vars.B)')
+        .replace(/C/g, 'Number(vars.C)')
+        .replace(/D/g, 'Number(vars.D)');
+    }
+
+    function expressionToVerilog(expr) {
+      return 'assign y = ' + expr.replace(/~/g, '~').replace(/\|/g, ' | ').replace(/&/g, ' & ').replace(/\^/g, ' ^ ') + ';';
+    }
+
+    function runTruthTable() {
+      const status = document.getElementById('logicStatus');
+      const raw = document.getElementById('exprInput').value;
+      const expr = normalizeExpression(raw);
+      const vars = ['A', 'B', 'C', 'D'].filter(v => expr.includes(v));
+      const head = document.getElementById('truthHead');
+      const body = document.getElementById('truthBody');
+      const mintermOut = document.getElementById('mintermOut');
+      const variableOut = document.getElementById('variableOut');
+      const verilogOut = document.getElementById('verilogOut');
+
+      try {
+        if (!expr) throw new Error('Enter a boolean expression first.');
+        if (vars.length === 0) throw new Error('Use at least one variable: A, B, C, or D.');
+        if (vars.length > 4) throw new Error('This quick tool supports up to four variables.');
+
+        const jsExpr = expressionToJs(expr);
+        const evaluate = new Function('vars', `return Number(Boolean(${jsExpr}));`);
+        const rowCount = Math.pow(2, vars.length);
+        const minterms = [];
+
+        head.innerHTML = '<tr>' + vars.map(v => `<th class="px-4 py-3 font-bold text-slate-700">${v}</th>`).join('') + '<th class="px-4 py-3 font-bold text-teal-800">Y</th></tr>';
+        body.innerHTML = '';
+
+        for (let i = 0; i < rowCount; i++) {
+          const values = {};
+          vars.forEach((v, index) => {
+            values[v] = Boolean((i >> (vars.length - index - 1)) & 1);
+          });
+          const output = evaluate(values);
+          if (output) minterms.push(i);
+          body.innerHTML += '<tr class="hover:bg-slate-50">' +
+            vars.map(v => `<td class="px-4 py-2 mono">${values[v] ? 1 : 0}</td>`).join('') +
+            `<td class="px-4 py-2 mono font-bold ${output ? 'text-teal-700' : 'text-slate-400'}">${output}</td></tr>`;
+        }
+
+        mintermOut.textContent = minterms.length ? `Σm(${minterms.join(', ')})` : 'Y = 0 for all input states';
+        variableOut.textContent = vars.join(' ');
+        verilogOut.textContent = expressionToVerilog(expr);
+        status.textContent = `Generated ${rowCount} input states successfully.`;
+        status.className = 'mt-4 text-sm font-medium text-teal-700';
+      } catch (error) {
+        status.textContent = error.message;
+        status.className = 'mt-4 text-sm font-medium text-red-600';
+      }
+    }
+
+    async function copyVerilog() {
+      const code = document.getElementById('verilogOut').textContent;
+      const status = document.getElementById('logicStatus');
+      try {
+        await navigator.clipboard.writeText(code);
+        status.textContent = 'Verilog assign copied.';
+        status.className = 'mt-4 text-sm font-medium text-teal-700';
+      } catch {
+        status.textContent = 'Copy failed. Select the Verilog line manually.';
+        status.className = 'mt-4 text-sm font-medium text-red-600';
+      }
+    }
+
+    calculateLogic();
+    convertNumber();
+    calcResistor();
+    runTruthTable();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-fade-in').forEach((el) => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal | CERTIFIEDRAO</title>
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    :root { 
+      --bg: #050505; 
+      --surface: #111111; 
+      --border: #222222; 
+      --text-main: #ffffff; 
+      --text-muted: #888888; 
+      --danger: #ef4444; 
+      --success: #4ade80;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { 
+      background-color: var(--bg); 
+      color: var(--text-main); 
+      font-family: 'Inter', sans-serif; 
+      display: flex; justify-content: center; align-items: flex-start; 
+      min-height: 100vh; padding: 3rem 1rem; 
+    }
+
+    .container { width: 100%; max-width: 900px; }
+    
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--surface); padding: 2.5rem 2rem; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .stat-card h3 { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 1px;}
+    .stat-card .num { font-size: 3.5rem; font-weight: 700; color: var(--text-main); }
+
+    .card { background: var(--surface); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2rem; }
+    h2 { margin: 0 0 1.5rem 0; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    
+    .form-group { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+    input, textarea { background: var(--bg); border: 1px solid var(--border); color: var(--text-main); padding: 0.85rem; border-radius: 8px; font-family: inherit; font-size: 1rem; width: 100%; transition: border-color 0.2s; }
+    input:focus, textarea:focus { outline: none; border-color: #666666; }
+    
+    button { background: var(--text-main); color: var(--bg); border: none; padding: 0.85rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.1s; }
+    button:hover { opacity: 0.9; } button:active { transform: scale(0.98); }
+    button.outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
+    button.outline:hover { background: var(--border); }
+    button.danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2); padding: 0.5rem 1rem; font-size: 0.85rem; }
+    button.danger:hover { background: rgba(239, 68, 68, 0.25); }
+    
+    .status { margin-top: 1rem; font-size: 0.9rem; text-align: center; min-height: 20px; }
+    
+    .project-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .project-item { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
+    .project-item div strong { display: block; margin-bottom: 0.35rem; font-size: 1.1rem; }
+    .project-item div span { font-size: 0.85rem; color: var(--text-muted); background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); margin-right: 0.5rem;}
+    .project-item div .link-preview { font-family: monospace; opacity: 0.6; border: none; background: transparent; padding: 0;}
+
+    #dashboard-section { display: none; } #login-section { display: block; max-width: 450px; margin: 0 auto; }
+    
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr; } .card { padding: 1.5rem; }
+      .project-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .project-item button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="login-section" class="card">
+      <h2 style="justify-content: center; margin-bottom: 2rem;">Admin Authentication</h2>
+      <form id="loginForm">
+        <div class="form-group"><label>Administrator Email</label><input type="email" id="loginEmail" required></div>
+        <div class="form-group"><label>Master Password</label><input type="password" id="loginPassword" required></div>
+        <button type="submit" style="width: 100%; margin-top: 1rem;">Authenticate Session</button>
+        <div id="loginStatus" class="status"></div>
+      </form>
+    </div>
+
+    <div id="dashboard-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.95rem;">&larr; Return to Public Site</a>
+        <button id="logoutBtn" class="outline" style="padding: 0.5rem 1.5rem;">Terminate Session</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><h3>TOTAL PAGE VIEWS</h3><div class="num" id="stat-views">...</div></div>
+        <div class="stat-card"><h3>PUBLISHED PROJECTS</h3><div class="num" id="stat-projects">...</div></div>
+      </div>
+
+      <div class="card">
+        <h2>Deploy New Project Link</h2>
+        <form id="addProjectForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div class="form-group"><label>Project Title</label><input type="text" id="title" required placeholder="e.g., VLSI Workstation"></div>
+            <div class="form-group"><label>Technical Category</label><input type="text" id="tag" required placeholder="e.g., Verilog Logic"></div>
+          </div>
+          
+          <div class="form-group">
+            <label>Card Description (Shown on Grid)</label>
+            <textarea id="description" rows="3" required placeholder="A brief summary of what this project does..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>Destination URL</label>
+            <input type="text" id="link_url" required placeholder="e.g., projects/vlsi-workstation.html OR https://github.com/...">
+            <small style="color:var(--text-muted); margin-top: 0.5rem; display:block;">If hosting on Netlify, enter the folder path (e.g., <code>projects/my-file.html</code>).</small>
+          </div>
+          
+          <button type="submit" style="margin-top: 0.5rem;">Publish Link to Board</button>
+          <div id="addStatus" class="status"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Manage Active Content</h2>
+        <div class="project-list" id="projectList">
+          <div class="status">Establishing secure database connection...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    const supabaseUrl = 'https://vojmavccdcbnkdfveqyx.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvam1hdmNjZGNibmtkZnZlcXl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwOTE3ODMsImV4cCI6MjEwNjY2Nzc4M30.pcXqcsqBlc4vKKeCJl2dsbvGQWlMjVpvnSNpGbPJpTo'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+
+    async function checkUserSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) { loginSection.style.display = 'none'; dashboardSection.style.display = 'block'; loadDashboardData(); } 
+      else { loginSection.style.display = 'block'; dashboardSection.style.display = 'none'; }
+    }
+    checkUserSession();
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      document.getElementById('loginStatus').textContent = 'Authenticating...'; 
+      const { error } = await supabase.auth.signInWithPassword({ email: document.getElementById('loginEmail').value, password: document.getElementById('loginPassword').value });
+      if (error) document.getElementById('loginStatus').textContent = error.message; 
+      else { document.getElementById('loginStatus').textContent = ''; checkUserSession(); }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => { await supabase.auth.signOut(); checkUserSession(); });
+
+    async function loadDashboardData() {
+      const list = document.getElementById('projectList');
+      const { data: analyticsData } = await supabase.from('analytics').select('views').eq('id', 1).single();
+      if (analyticsData) document.getElementById('stat-views').textContent = analyticsData.views.toLocaleString();
+
+      const { data: projectsData, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+      if (error) return;
+      document.getElementById('stat-projects').textContent = projectsData.length.toLocaleString();
+
+      list.innerHTML = '';
+      projectsData.forEach(proj => {
+        const item = document.createElement('div');
+        item.className = 'project-item';
+        item.innerHTML = `<div><strong>${proj.title}</strong><span>${proj.tag}</span><span class="link-preview">&rarr; ${proj.link_url}</span></div><button class="danger" onclick="deleteProject(${proj.id})">Remove</button>`;
+        list.appendChild(item);
+      });
+    }
+
+    window.deleteProject = async function(projectId) {
+      if(confirm('WARNING: Permanently delete this project link?')) {
+        await supabase.from('projects').delete().eq('id', projectId);
+        loadDashboardData();
+      }
+    }
+
+    document.getElementById('addProjectForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusDiv = document.getElementById('addStatus');
+      statusDiv.textContent = 'Publishing...'; statusDiv.style.color = 'var(--text-muted)';
+      
+      const projectData = {
+        title: document.getElementById('title').value,
+        tag: document.getElementById('tag').value,
+        description: document.getElementById('description').value,
+        link_url: document.getElementById('link_url').value
+      };
+
+      const { error } = await supabase.from('projects').insert([projectData]);
+      if (error) { statusDiv.textContent = 'Error: ' + error.message; statusDiv.style.color = 'var(--danger)'; } 
+      else {
+        statusDiv.textContent = 'Success: Link has been added.'; statusDiv.style.color = 'var(--success)';
+        document.getElementById('addProjectForm').reset();
+        loadDashboardData(); 
+        setTimeout(() => { statusDiv.textContent = ''; }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | CERTIFIEDRAO</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root { 
+      --bg: #050505; --surface: #111111; --border: #222222; 
+      --text-main: #ffffff; --text-muted: #888888; --accent: #333333; 
+      --font: 'Inter', sans-serif; --transition-speed: 0.3s;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { 
+      background-color: var(--bg); color: var(--text-main); 
+      font-family: var(--font); line-height: 1.6; min-height: 100vh; 
+      display: flex; flex-direction: column; overflow-x: hidden; 
+    }
+
+    a { text-decoration: none; color: inherit; transition: all var(--transition-speed) ease; }
+    
+    .navbar { 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 1.5rem 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+      position: relative; z-index: 100; background: var(--bg); 
+    }
+    .brand { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text-main); }
+    .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+
+    .project-container { 
+      flex: 1; max-width: 900px; margin: 0 auto; padding: 4rem 2rem; width: 100%; 
+    }
+
+    /* Dynamic Content Styling */
+    #dynamic-content h1, #dynamic-content h2 { margin: 2rem 0 1rem 0; font-weight: 600; }
+    #dynamic-content h1 { font-size: 2.5rem; letter-spacing: -1px; margin-top: 0; }
+    #dynamic-content p { color: #aaaaaa; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    #dynamic-content img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); margin: 1.5rem 0; }
+    #dynamic-content ul { margin-left: 2rem; color: #aaaaaa; margin-bottom: 1.5rem; }
+    #dynamic-content code { background: var(--surface); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; border: 1px solid var(--border); color: #4ade80;}
+    
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted);
+      margin-bottom: 2rem; font-size: 0.95rem; font-weight: 500;
+    }
+    .back-link:hover { color: var(--text-main); }
+    
+    .loading-state { text-align: center; color: var(--text-muted); padding: 4rem; }
+
+    @media (max-width: 768px) { 
+      .navbar { padding: 1.5rem 2rem; } 
+      .menu-toggle { display: block; }
+      .nav-links { 
+        display: none; flex-direction: column; position: absolute; 
+        top: 100%; left: 0; width: 100%; background: var(--surface); 
+        padding: 2rem; border-bottom: 1px solid var(--border); text-align: center; 
+      }
+      .nav-links.active { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="brand"><a href="index.html">CERTIFIEDRAO</a></div>
+      <button class="menu-toggle" id="mobile-menu-btn">
+        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="project-container">
+    <a href="projects.html" class="back-link">&larr; Back to Projects</a>
+    
+    <div id="dynamic-content">
+      <div class="loading-state">Retrieving project data...</div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    
+    const supabaseUrl = 'https://vojmavccdcbnkdfveqyx.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvam1hdmNjZGNibmtkZnZlcXl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwOTE3ODMsImV4cCI6MjEwNjY2Nzc4M30.pcXqcsqBlc4vKKeCJl2dsbvGQWlMjVpvnSNpGbPJpTo'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    async function loadProjectDetails() {
+      const container = document.getElementById('dynamic-content');
+      
+      // Get the ID from the URL (e.g. project.html?id=5)
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectId = urlParams.get('id');
+
+      if (!projectId) {
+        container.innerHTML = '<div class="loading-state" style="color:#ef4444;">Error: No project ID provided.</div>';
+        return;
+      }
+
+      const { data, error } = await supabase.from('projects').select('*').eq('id', projectId).single();
+
+      if (error || !data) {
+        container.innerHTML = '<div class="loading-state" style="color:#ef4444;">Error loading project. It may have been deleted.</div>';
+        return;
+      }
+
+      // Update page title
+      document.title = `${data.title} | CERTIFIEDRAO`;
+
+      // Inject custom HTML content. If no HTML was provided, fallback to standard description.
+      if (data.content) {
+        container.innerHTML = data.content;
+      } else {
+        container.innerHTML = `
+          <span style="font-size: 0.8rem; color: #888; border: 1px solid #333; padding: 0.2rem 0.6rem; border-radius: 50px;">${data.tag}</span>
+          <h1>${data.title}</h1>
+          <p>${data.description}</p>
+        `;
+      }
+    }
+    
+    loadProjectDetails();
+  </script>
+</body>
+</html>
